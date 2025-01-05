@@ -77,10 +77,18 @@ public class CharacterPngGenerator {
 
                 try {
                     outputFile = new File(outputDir, character + ".png");
-                    ImageIO.write(image, "PNG", outputFile);
+                    if(!outputFile.exists()) {
+                        ImageIO.write(image, "PNG", outputFile);
+                    } else {
+                        ImageIO.write(image, "PNG", new File(outputDir, character + "(1).png"));
+                    }
                 } catch (Exception ee) {
                     File ooutputFile = new File(outputDir, "special" + counter + ".png");
-                    ImageIO.write(image, "PNG", ooutputFile);
+                    if(!ooutputFile.exists()) {
+                        ImageIO.write(image, "PNG", ooutputFile);
+                    } else {
+                        ImageIO.write(image, "PNG", new File(outputDir, "special" + counter + "(1).png"));
+                    }
                     System.out.println("Su karakter dosya sisteminde isim olarak kullanilamadigindan " + "special" + counter + ".png" + " adiyla yazdirildi: " + character);
 
                     counter++;
